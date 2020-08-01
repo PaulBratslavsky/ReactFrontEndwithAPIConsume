@@ -2,7 +2,7 @@ import React from 'react';
 import Page from '../Page';
 import Axios from 'axios';
 
-const API_REGISTER_URL = 'http://localhost:8080/register';
+const API_REGISTER_URL = '/register';
 const initialFormData = {
   username: '',
   email: '',

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 
 
 function HeaderUser({ setIsLoggedIn }) {
@@ -25,7 +25,6 @@ function HeaderUser({ setIsLoggedIn }) {
     localStorage.removeItem('userData');
   };
 
-  console.log(avatar, "FUCK YOU")
   return (
     <div className="flex-row my-3 my-md-0">
       <a href="#" className="text-white mr-2 header-search-icon">
@@ -41,9 +40,9 @@ function HeaderUser({ setIsLoggedIn }) {
           src={checkIfAvatar()}
         />}
       </a>
-      <a className="btn btn-sm btn-success mr-2" href="/create-post">
+      <Link className="btn btn-sm btn-success mr-2" to="/createpost">
         Create Post
-      </a>
+      </Link>
       <button onClick={handleLogOut} className="btn btn-sm btn-secondary">
         Sign Out
       </button>

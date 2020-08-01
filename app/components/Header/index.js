@@ -3,15 +3,7 @@ import { Link } from 'react-router-dom';
 import HeaderForm from './HeaderForm';
 import HeaderUser from './HeaderUser';
 
-export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-
-  React.useEffect(() => {
-    if (localStorage.getItem('userData')) {
-      setIsLoggedIn(true);
-    }
-  }, [isLoggedIn]);
-
+export default function Header({isLoggedIn, setIsLoggedIn}) {
   return (
     <header className="header-bar bg-primary mb-3">
       <div className="container d-flex flex-column flex-md-row align-items-center p-3">
