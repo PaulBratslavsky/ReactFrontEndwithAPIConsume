@@ -1,10 +1,31 @@
 import React, { useEffect } from 'react';
 
+
+
 function HeaderUser({ setIsLoggedIn }) {
+  const [ avatar, setAvatar ] = React.useState(false);
+
+  useEffect(() => {
+    setAvatar(checkIfAvatar())
+  },[]);
+
+
+
+  function checkIfAvatar() {
+    const avatar = null;
+    if (localStorage.getItem('userData')) {
+      return JSON.parse(localStorage.getItem('userData')).avatar;
+    }
+    return avatar;
+  }
+
+
   const handleLogOut = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem('reactAppAvatar');
+    localStorage.removeItem('userData');
   };
+
+  console.log(avatar, "FUCK YOU")
   return (
     <div className="flex-row my-3 my-md-0">
       <a href="#" className="text-white mr-2 header-search-icon">
@@ -15,10 +36,10 @@ function HeaderUser({ setIsLoggedIn }) {
         <span className="chat-count-badge text-white">3</span>
       </span>
       <a href="#" className="mr-2">
-        <img
+        { checkIfAvatar() && <img
           className="small-header-avatar"
-          src={localStorage.getItem('reactAppAvatar')}
-        />
+          src={checkIfAvatar()}
+        />}
       </a>
       <a className="btn btn-sm btn-success mr-2" href="/create-post">
         Create Post

@@ -7,7 +7,7 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
-    if (localStorage.getItem('reactAppAvatar')) {
+    if (localStorage.getItem('userData')) {
       setIsLoggedIn(true);
     }
   }, [isLoggedIn]);

@@ -19,7 +19,7 @@ function HeaderForm({ setIsLoggedIn }) {
       const response = await Axios.post(API_LOGIN_URL, request);
       if (response.data) {
         setIsLoggedIn(true);
-        localStorage.setItem('reactAppAvatar', response.data.avatar)
+        setUserToLocalStorage('userData', response.data)
       } else {
         alert('wrong info');
       }
