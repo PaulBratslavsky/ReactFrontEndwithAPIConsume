@@ -1,31 +1,25 @@
 import React, { createContext } from 'react';
 
-export const MainContext = createContext();
+export const StateContext = createContext();
+export const DispatchContext = createContext();
 
-export default function MainContextProvider({children}) {
+const ContextProvider = ({ children }) => {
 
-  // GLOBAL STATE
-  const [flashMessage, setFlashMessage] = React.useState(['test']);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const state = {
 
-  // GLOBAL METHODS
-  const addFlashMessage = (msg) => {
-    setFlashMessage(prev => [...prev, msg])
   }
 
-  // PASS TO PROVIDER
-  const context = {
-    methods: {
-      addFlashMessage,
-      setIsLoggedIn,
-    },
-    state: {
-      flashMessage,
-      isLoggedIn,
-    }
+  const dispatch = {
+
   }
 
-  return <MainContext.Provider value={context} >
-    {children}
-  </MainContext.Provider>
-}
+  return (
+    <StateContext.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
+        {children}
+      </DispatchContext.Provider>
+    </StateContext.Provider>
+  );
+};
+
+export default ContextProvider;
