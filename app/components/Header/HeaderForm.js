@@ -1,9 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Axios from 'axios';
+import { MainContext } from '../../context';
 
 const API_LOGIN_URL = 'http://localhost:8080/login';
 
-function HeaderForm({ setIsLoggedIn }) {
+function HeaderForm() {
+
+  const myContext = React.useContext(MainContext);
+  const { setIsLoggedIn } = myContext.methods;
+
+
   const [userName, setUserName] = React.useState('');
   const [userPassword, setUserPassword] = React.useState('');
 

@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { MainContext } from '../../context';
 
 
-function HeaderUser({ setIsLoggedIn }) {
+function HeaderUser() {
+
+  const myContext = React.useContext(MainContext);
+  const { setIsLoggedIn } = myContext.methods;
   const [ avatar, setAvatar ] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setAvatar(checkIfAvatar())
   },[]);
 
@@ -18,7 +22,6 @@ function HeaderUser({ setIsLoggedIn }) {
     }
     return avatar;
   }
-
 
   const handleLogOut = () => {
     setIsLoggedIn(false);

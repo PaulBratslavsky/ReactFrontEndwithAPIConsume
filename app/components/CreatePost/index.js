@@ -1,21 +1,23 @@
 import React from 'react';
 import Page from '../Page';
 import Axios from 'axios';
+import { MainContext } from '../../context';
+import { withRouter } from 'react-router-dom';
 
 const API_CREATE_POST_URL = '/create-post'
 const initialData = { title: '', body: '' };
 
 
-function ComponentName() {
+function CreatePost({history}) {
+  
+  const myContext = React.useContext(MainContext);
+  const { addFlashMessage } = myContext.methods;
   const [formData, setFormData] = React.useState(initialData);
-
   const [ token, setToken ] = React.useState(false);
 
   React.useEffect(() => {
     setToken(checkIfToken())
   },[]);
-
-
 
   function checkIfToken() {
     const token = null;
@@ -31,10 +33,10 @@ function ComponentName() {
     if (token) {
       const tempData = {...formData, token}
       try {
-        await Axios.post(API_CREATE_POST_URL, tempData);
-        alert('Success');
-        setFormData(initialData);
-
+        const response = await Axios.post(API_CREATE_POST_URL, tempData);
+        addFlashMessage("Post Added");
+        // setFormData(initialData);
+        history.push(`/post/${response.data}`)
       } catch (err) {
         console.error(`error: ${err}`);
       }
@@ -85,4 +87,4 @@ function ComponentName() {
   );
 }
 
-export default ComponentName;
+export default withRouter(CreatePost);
