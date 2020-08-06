@@ -1,13 +1,12 @@
 import React from 'react';
 import Axios from 'axios';
-import { MainContext } from '../../context';
+import { DispatchContext } from '../../context';
 
 const API_LOGIN_URL = 'http://localhost:8080/login';
 
 function HeaderForm() {
 
-  const myContext = React.useContext(MainContext);
-  const { setIsLoggedIn } = myContext.methods;
+  const myDispatch = React.useContext(DispatchContext);
 
 
   const [userName, setUserName] = React.useState('');
@@ -24,7 +23,7 @@ function HeaderForm() {
     try {
       const response = await Axios.post(API_LOGIN_URL, request);
       if (response.data) {
-        setIsLoggedIn(true);
+        //setIsLoggedIn(true);
         setUserToLocalStorage('userData', response.data)
       } else {
         alert('wrong info');

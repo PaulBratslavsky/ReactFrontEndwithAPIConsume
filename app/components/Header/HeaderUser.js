@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MainContext } from '../../context';
+import { DispatchContext } from '../../context';
 
 
 function HeaderUser() {
 
-  const myContext = React.useContext(MainContext);
-  const { setIsLoggedIn } = myContext.methods;
+  const myDispatch = React.useContext(DispatchContext);
+
   const [ avatar, setAvatar ] = React.useState(false);
 
   React.useEffect(() => {
@@ -24,7 +24,7 @@ function HeaderUser() {
   }
 
   const handleLogOut = () => {
-    setIsLoggedIn(false);
+    // setIsLoggedIn(false);
     localStorage.removeItem('userData');
   };
 

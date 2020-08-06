@@ -1,7 +1,7 @@
 import React from 'react';
 import Page from '../Page';
 import Axios from 'axios';
-import { MainContext } from '../../context';
+import { DispatchContext } from '../../context';
 import { withRouter } from 'react-router-dom';
 
 const API_CREATE_POST_URL = '/create-post'
@@ -10,8 +10,8 @@ const initialData = { title: '', body: '' };
 
 function CreatePost({history}) {
   
-  const myContext = React.useContext(MainContext);
-  const { addFlashMessage } = myContext.methods;
+  const myDispatch = React.useContext(DispatchContext);
+
   const [formData, setFormData] = React.useState(initialData);
   const [ token, setToken ] = React.useState(false);
 
