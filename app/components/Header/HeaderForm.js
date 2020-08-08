@@ -23,10 +23,11 @@ function HeaderForm() {
       const response = await Axios.post(API_LOGIN_URL, request);
       if (response.data) {
         myDispatch.logInDispatch({type: 'login'})
-        myDispatch.messageDispatch({type: 'add_message', payload: 'Succefully logged in.'})
+        myDispatch.messageDispatch({type: 'add_message_success', payload: {message: "You just logged in.", type: 'alert-success'}})
         setUserToLocalStorage('userData', response.data)
       } else {
-        alert('wrong info');
+        myDispatch.messageDispatch({type: 'add_message_error', payload: {message: "Check your email or password.", type: 'alert-danger'}})
+
       }
     } catch (err) {
       console.error(`error: ${err}`);

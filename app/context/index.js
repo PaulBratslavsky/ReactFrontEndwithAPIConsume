@@ -7,7 +7,7 @@ const ContextProvider = ({ children }) => {
 
 const initialState = {
   loggedIn: false,
-  message: [],
+  message: {message: ['ee'], type: 'alert-success'},
 }
 
 function logInReducer(state, action) {
@@ -22,9 +22,14 @@ function logInReducer(state, action) {
 }  
 
 function messageReducer(state, action) {
+  console.log(state, action.type, action.payload, "SGASGAS")
   switch (action.type) {
-    case 'add_message':
-      return [...state, action.payload ];
+    case 'add_message_success':
+      return { message: [...state.message, action.payload.message ], type: action.payload.type};
+
+    case 'add_message_error':
+      return { message: [...state.message, action.payload.message ], type: action.payload.type};
+      
     default:
       return state;
   }

@@ -1,11 +1,11 @@
 import React from 'react';
 
-function FlashMessage({ messages }) {
-
+function FlashMessage({ messages}) {
+  const {message, type } = messages;
   return (
     <div className="floating-alerts">
       {
-        messages.map((message, index) => <div key={index} className="alert alert-success text-center floating-alert shadow-sm">
+        message.map((message, index) => <div key={index} className={`alert ${type} text-center floating-alert shadow-sm`}>
           {message}
         </div>)
       }
