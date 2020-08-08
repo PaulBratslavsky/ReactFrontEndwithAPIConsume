@@ -7,7 +7,7 @@ const ContextProvider = ({ children }) => {
 
 const initialState = {
   loggedIn: false,
-  message: {message: ['ee'], type: 'alert-success'},
+  message: {message: [], type: 'alert-success'},
 }
 
 function logInReducer(state, action) {

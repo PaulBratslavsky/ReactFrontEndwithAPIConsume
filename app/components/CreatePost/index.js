@@ -2,6 +2,8 @@ import React from 'react';
 import Page from '../Page';
 import Axios from 'axios';
 import { DispatchContext } from '../../context';
+import { StateContext } from '../../context';
+
 import { withRouter } from 'react-router-dom';
 
 const API_CREATE_POST_URL = '/create-post'
@@ -11,13 +13,18 @@ const initialData = { title: '', body: '' };
 function CreatePost({history}) {
   
   const myDispatch = React.useContext(DispatchContext);
+  const myState = React.useContext(StateContext);
 
   const [formData, setFormData] = React.useState(initialData);
   const [ token, setToken ] = React.useState(false);
 
   React.useEffect(() => {
-    setToken(checkIfToken())
-  },[]);
+    if (checkIfToken() || myState.logInState.loggedIn) {
+      setToken(checkIfToken())
+    } else {
+      history.push(`/`)
+    }
+  },[myState.logInState.loggedIn]);
 
   function checkIfToken() {
     const token = null;
