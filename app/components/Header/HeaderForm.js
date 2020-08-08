@@ -8,7 +8,6 @@ function HeaderForm() {
 
   const myDispatch = React.useContext(DispatchContext);
 
-
   const [userName, setUserName] = React.useState('');
   const [userPassword, setUserPassword] = React.useState('');
 
@@ -23,7 +22,8 @@ function HeaderForm() {
     try {
       const response = await Axios.post(API_LOGIN_URL, request);
       if (response.data) {
-        //setIsLoggedIn(true);
+        myDispatch.logInDispatch({type: 'login'})
+        myDispatch.messageDispatch({type: 'add_message', payload: 'Succefully logged in.'})
         setUserToLocalStorage('userData', response.data)
       } else {
         alert('wrong info');

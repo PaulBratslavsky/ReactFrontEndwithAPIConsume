@@ -34,7 +34,7 @@ function CreatePost({history}) {
       const tempData = {...formData, token}
       try {
         const response = await Axios.post(API_CREATE_POST_URL, tempData);
-        addFlashMessage("Post Added");
+        myDispatch.messageDispatch({type: 'add_message', payload: 'Succefully created post.'})
         // setFormData(initialData);
         history.push(`/post/${response.data}`)
       } catch (err) {

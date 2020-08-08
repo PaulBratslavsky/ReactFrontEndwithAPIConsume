@@ -1,6 +1,7 @@
-import React from "react"
+import React from 'react';
 
-function FlashMessage({messages}) {
+function FlashMessage({ messages }) {
+
   return (
     <div className="floating-alerts">
       {
@@ -9,7 +10,7 @@ function FlashMessage({messages}) {
         </div>)
       }
     </div>
-  )
+  );
 }
 
-export default FlashMessage
+export default FlashMessage;

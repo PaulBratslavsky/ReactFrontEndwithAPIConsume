@@ -2,18 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { DispatchContext } from '../../context';
 
-
 function HeaderUser() {
-
   const myDispatch = React.useContext(DispatchContext);
 
-  const [ avatar, setAvatar ] = React.useState(false);
+  const [avatar, setAvatar] = React.useState(false);
 
   React.useEffect(() => {
-    setAvatar(checkIfAvatar())
-  },[]);
-
-
+    setAvatar(checkIfAvatar());
+  }, []);
 
   function checkIfAvatar() {
     const avatar = null;
@@ -24,8 +20,8 @@ function HeaderUser() {
   }
 
   const handleLogOut = () => {
-    // setIsLoggedIn(false);
     localStorage.removeItem('userData');
+    myDispatch.logInDispatch({ type: 'logout' });
   };
 
   return (
@@ -38,10 +34,9 @@ function HeaderUser() {
         <span className="chat-count-badge text-white">3</span>
       </span>
       <a href="#" className="mr-2">
-        { checkIfAvatar() && <img
-          className="small-header-avatar"
-          src={checkIfAvatar()}
-        />}
+        {avatar && (
+          <img className="small-header-avatar" src={checkIfAvatar()} />
+        )}
       </a>
       <Link className="btn btn-sm btn-success mr-2" to="/createpost">
         Create Post

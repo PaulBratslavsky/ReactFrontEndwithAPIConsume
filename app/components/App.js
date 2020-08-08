@@ -20,21 +20,21 @@ const App = () => {
   const myState = React.useContext(StateContext);
   const myDispatch = React.useContext(DispatchContext);
 
-  console.log(myState, "FROM STATE");
+  console.log(myState.messageState, "FROM STATE");
   console.log(myDispatch, "FROM DISPATCH");
 
   React.useEffect(() => {
     if (localStorage.getItem('userData')) {
-      // setIsLoggedIn(true);
+      myDispatch.logInDispatch({type: 'login'})
     }
-  }, []);//isLoggedIn
+  }, []);
 
   return (
     <Router>
-      <FlashMessage messages={[]}/>
-      <Header isLoggedIn={true} />
+      <FlashMessage messages={myState.messageState}/>
+      <Header isLoggedIn={myState.logInState.loggedIn} />
       <Switch>
-        <Route path="/" exact component={true ? WelcomePage : HomePage} />
+        <Route path="/" exact component={myState.logInState.loggedIn ? WelcomePage : HomePage} />
         <Route path="/about" component={About} />
         <Route path="/terms" component={Terms} />
         <Route path="/createpost" component={CreatePost} />
